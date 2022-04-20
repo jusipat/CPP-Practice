@@ -11,7 +11,24 @@ vector<string> passwords(1, "123");
 
 bool logged_out = true;
 
-void getPassword();
+void getPassword() {
+    bool attempting = true;
+
+    while (attempting) {
+        for (int i = 0; i < users.size(); i++) {
+            if (input == users[i])
+                index = i;
+        }
+        printf("%s", "Input password: ");
+        cin >> input;
+        if (input == passwords[index]) {
+            printf("%s", "Welcome user!");
+            attempting = false;
+        } else {
+            printf("%s", "\nIncorrect Password... Retry\n");
+        }
+    }
+}
 
 int main() {
     printf("%s", "Input Username: ");
@@ -37,28 +54,9 @@ int main() {
                 logged_out = false;
                 continue;
             } else {
-               logged_out = true;
+                logged_out = true;
             }
         }
     }
     printf("You are now logged in as: %s", users[index].c_str());
-}
-
-void getPassword() {
-    bool attempting = true;
-
-    while (attempting) {
-        for (int i = 0; i < users.size(); i++) {
-            if (input == users[i])
-                index = i;
-        }
-        printf("%s", "Input password: ");
-        cin >> input;
-        if (input == passwords[index]) {
-            printf("%s", "Welcome user!");
-            attempting = false;
-        } else {
-            printf("%s", "\nIncorrect Password... Retry\n");
-        }
-    }
 }
